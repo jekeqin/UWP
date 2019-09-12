@@ -1,21 +1,27 @@
 function AutoPrint(){
     
     this.doPrint = function(json){
+        var div = document.getElementById('_print_error');
+        if( div ){
+            div.innerHTML = "";
+        }
+
         if( typeof json == 'object' ){
             json = JSON.stringify(json);
         }
         var xhr = new XMLHttpRequest();
         xhr.upload.addEventListener("progress", this.ajaxRequestProgress, false); //设置上传进度监控
-        xhr.onreadystatechange = function() {
+        xhr.onreadystatechange = ()=> {
             if (xhr.readyState == 4 ) {
                 if( xhr.status==200 ){
-                    
+                    console.log(xhr.responseText);
                 }else{
                     console.error('Network Error!');
+                    this.error();
                 }
             }
         };
-        xhr.open("POST", "http://192.168.10.115:65432/", true);        // method,url,async
+        xhr.open("POST", "http://127.0.0.1:65432/", true);        // method,url,async
         xhr.setRequestHeader("Content-Type", 'application/json;charset=utf-8');
         //xhr.setRequestHeader("Origin", location.origin);
         // default content-type : multipart/form-data
@@ -33,7 +39,14 @@ function AutoPrint(){
     }
 
     this.error = function(){
-
+        var div = document.getElementById('_print_error');
+        if( !div ){
+            div = document.createElement('div');
+            div.id = "_print_error";
+            div.style.cssText = "width:500px;line-height:50px;background:#f00;color:#fff;position:fixed;top:0px;left:50%;margin-left:-250px;text-align:center;";
+            document.body.appendChild(div);
+        }
+        div.innerHTML = "打印服务异常，暂时无法打印小票，请检查服务是否正常运行！！！";
     }
 
     this.formatTime = function(timestamp) {
@@ -85,14 +98,16 @@ var a = {
 
 
 var _print = new AutoPrint();
-function doPrintOrder(order)
-{
+function doPrintOrder(order, auto)
+{   // auto: true自动打印，false手动打印
     let store = localStorage.getItem('store.print.orders');
     store == null ? store = [] : store = store.split(',');
-    if (store.indexOf(order.id + '') >= 0) {
+    if (store.indexOf(order.id + '') >= 0 && auto) {
         return;
     }
-    store.push(order.id);
+    if( store.indexOf(order.id + '') <0 ){
+        store.push(order.id);
+    }
     if (store.length > 1000) {
         store = store.splice(0, store.length - 1000);
     }
@@ -107,7 +122,7 @@ function doPrintOrder(order)
 
     let waimai = 0;
     order.orderGoodsDetailList.forEach((obj) => {
-        if (obj.categoryId == 3 || obj.categoryId == 4) {
+        if (obj.categoryId == 3 ) {
             waimai += 1;
         }
     });
@@ -237,7 +252,7 @@ function doPrintLabel(order){
     };
 
     order.orderGoodsDetailList.forEach((obj, i) => {
-        if (obj.categoryId == 3 || obj.categoryId == 4) {
+        if (obj.categoryId == 3 ) {
             !obj.realGoodsNum ? obj.realGoodsNum=1:true;
             for(let i=0;i<obj.realGoodsNum;i++){
                 set.body = [];
