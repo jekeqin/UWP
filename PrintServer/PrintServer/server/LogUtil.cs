@@ -1,8 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace PrintServer.server
@@ -10,6 +11,8 @@ namespace PrintServer.server
     public class LogUtil
     {
         private static string logFilePath = null;
+
+        private static ReaderWriterLockSlim _lock = new ReaderWriterLockSlim();
 
         private static void initFile()
         {
@@ -44,10 +47,22 @@ namespace PrintServer.server
 
         private static void writeToFile(string type,string  log)
         {
-            Console.WriteLine("{0}\t{1}\t{2}", DateTime.Now.ToString(), type, log);
-            using (StreamWriter writer = new StreamWriter(logFilePath, true))
+            try
             {
-                writer.WriteLine("{0}\t{1}\t{2}", DateTime.Now.ToString(), type, log);
+                _lock.EnterWriteLock();
+                Console.WriteLine("{0}\t{1}\t{2}", DateTime.Now.ToString(), type, log);
+                using (StreamWriter writer = new StreamWriter(logFilePath, true))
+                {
+                    writer.WriteLine("{0}\t{1}\t{2}", DateTime.Now.ToString(), type, log);
+                }
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+                _lock.ExitWriteLock();
             }
         }
     }
