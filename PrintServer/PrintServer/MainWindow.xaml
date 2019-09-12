@@ -1,0 +1,51 @@
+﻿<Window x:Class="PrintServer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PrintServer"
+        mc:Ignorable="d"
+        Title="自动打印服务" Height="400" Width="600" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" Icon="assets/print.ico">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Margin="10,0,10,0" Orientation="Horizontal">
+            <Label Content="默认端口："/>
+
+            <TextBox x:Name="httpPort" Width="60" Height="24" BorderBrush="Blue" MaxLength="5" VerticalAlignment="Center">
+                <TextBox.InputScope>
+                    <InputScope>
+                        <InputScope.Names>
+                            <InputScopeName NameValue="Number"/>
+                        </InputScope.Names>
+                    </InputScope>
+                </TextBox.InputScope>
+            </TextBox>
+
+            <Button x:Name="modifyPortButton" Content="修改端口" Height="24" Margin="10,0,0,0" Click="ModifyPortButton_Click"/>
+            <Button x:Name="wsServerButton" Content="启动服务" Height="24" Margin="10,0,0,0" Click="WsServerButton_Click"/>
+
+            <Label Content="参数单位：mm(毫米)，修改端口保存后需要重启程序"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1">
+            <TextBox x:Name="cmd1" IsReadOnly="True"/>
+            <TextBox x:Name="cmd2" IsReadOnly="True"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2">
+            <Label Content="可用打印机列表："/>
+        </StackPanel>
+
+        <ScrollViewer Padding="5,5" Grid.Row="3">
+            <StackPanel x:Name="listView">
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>

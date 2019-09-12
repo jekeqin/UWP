@@ -1,0 +1,17 @@
+C:\Users\dj-xx01\vs\repos\PrintServer\PrintServer\bin\Release\PrintServer.exe.config
+C:\Users\dj-xx01\vs\repos\PrintServer\PrintServer\bin\Release\PrintServer.exe
+C:\Users\dj-xx01\vs\repos\PrintServer\PrintServer\bin\Release\PrintServer.pdb
+C:\Users\dj-xx01\vs\repos\PrintServer\PrintServer\bin\Release\Newtonsoft.Json.dll
+C:\Users\dj-xx01\vs\repos\PrintServer\PrintServer\bin\Release\Newtonsoft.Json.xml
+C:\Users\dj-xx01\vs\repos\PrintServer\PrintServer\obj\Release\MainWindow.g.cs
+C:\Users\dj-xx01\vs\repos\PrintServer\PrintServer\obj\Release\App.g.cs
+C:\Users\dj-xx01\vs\repos\PrintServer\PrintServer\obj\Release\PrintServer_MarkupCompile.cache
+C:\Users\dj-xx01\vs\repos\PrintServer\PrintServer\obj\Release\PrintServer_MarkupCompile.lref
+C:\Users\dj-xx01\vs\repos\PrintServer\PrintServer\obj\Release\MainWindow.baml
+C:\Users\dj-xx01\vs\repos\PrintServer\PrintServer\obj\Release\PrintServer.g.resources
+C:\Users\dj-xx01\vs\repos\PrintServer\PrintServer\obj\Release\PrintServer.Properties.Resources.resources
+C:\Users\dj-xx01\vs\repos\PrintServer\PrintServer\obj\Release\PrintServer.csproj.GenerateResource.cache
+C:\Users\dj-xx01\vs\repos\PrintServer\PrintServer\obj\Release\PrintServer.csproj.CoreCompileInputs.cache
+C:\Users\dj-xx01\vs\repos\PrintServer\PrintServer\obj\Release\PrintServer.csproj.CopyComplete
+C:\Users\dj-xx01\vs\repos\PrintServer\PrintServer\obj\Release\PrintServer.exe
+C:\Users\dj-xx01\vs\repos\PrintServer\PrintServer\obj\Release\PrintServer.pdb
